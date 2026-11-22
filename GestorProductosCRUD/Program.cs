@@ -14,6 +14,8 @@ namespace GestorProductosCRUD
                 Console.WriteLine("\n=== GESTOR DE PRODUCTOS (CRUD) ===");
                 Console.WriteLine("1. Crear producto");
                 Console.WriteLine("2. Listar productos");
+                Console.WriteLine("3. Actualizar producto");
+                Console.WriteLine("4. Eliminar producto");
                 Console.WriteLine("0. Salir");
                 Console.Write("Selecciona una opción: ");
                 string? opcion = Console.ReadLine();
@@ -46,6 +48,32 @@ namespace GestorProductosCRUD
                                 Console.WriteLine(p);
                             }
                         }
+                        break;
+
+                    case "3":
+                        Console.Write("ID del producto a actualizar: ");
+                        int idEditar = int.Parse(Console.ReadLine() ?? "0");
+                        Console.Write("Nuevo nombre: ");
+                        string nuevoNombre = Console.ReadLine() ?? "";
+                        Console.Write("Nuevo precio: ");
+                        decimal nuevoPrecio = decimal.Parse(Console.ReadLine() ?? "0");
+                        Console.Write("Nuevo stock: ");
+                        int nuevoStock = int.Parse(Console.ReadLine() ?? "0");
+
+                        if (servicio.ActualizarProducto(idEditar, nuevoNombre, nuevoPrecio, nuevoStock))
+                            Console.WriteLine("Producto actualizado correctamente.");
+                        else
+                            Console.WriteLine("Producto no encontrado.");
+                        break;
+
+                    case "4":
+                        Console.Write("ID del producto a eliminar: ");
+                        int idEliminar = int.Parse(Console.ReadLine() ?? "0");
+
+                        if (servicio.EliminarProducto(idEliminar))
+                            Console.WriteLine("Producto eliminado correctamente.");
+                        else
+                            Console.WriteLine("Producto no encontrado.");
                         break;
 
                     case "0":
