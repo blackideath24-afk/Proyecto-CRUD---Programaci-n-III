@@ -13,6 +13,7 @@ namespace GestorProductosCRUD
             {
                 Console.WriteLine("\n=== GESTOR DE PRODUCTOS (CRUD) ===");
                 Console.WriteLine("1. Crear producto");
+                Console.WriteLine("2. Listar productos");
                 Console.WriteLine("0. Salir");
                 Console.Write("Selecciona una opción: ");
                 string? opcion = Console.ReadLine();
@@ -29,6 +30,22 @@ namespace GestorProductosCRUD
 
                         servicio.CrearProducto(nombre, precio, stock);
                         Console.WriteLine("Producto agregado correctamente.");
+                        break;
+
+                    case "2":
+                        var lista = servicio.ObtenerTodos();
+                        if (lista.Count == 0)
+                        {
+                            Console.WriteLine("No hay productos registrados.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n--- Lista de Productos ---");
+                            foreach (var p in lista)
+                            {
+                                Console.WriteLine(p);
+                            }
+                        }
                         break;
 
                     case "0":
