@@ -18,5 +18,10 @@ namespace GestorProductosCRUD
             };
             _productos.Add(producto);
         }
+
+        public List<Producto> ObtenerTodos()
+        {
+            return _productos;
+        }
     }
 }
