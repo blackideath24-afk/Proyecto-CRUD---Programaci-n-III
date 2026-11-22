@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace GestorProductosCRUD
 {
@@ -22,6 +23,26 @@ namespace GestorProductosCRUD
         public List<Producto> ObtenerTodos()
         {
             return _productos;
+        }
+
+        public bool ActualizarProducto(int id, string nuevoNombre, decimal nuevoPrecio, int nuevoStock)
+        {
+            var producto = _productos.FirstOrDefault(p => p.Id == id);
+            if (producto == null) return false;
+
+            producto.Nombre = nuevoNombre;
+            producto.Precio = nuevoPrecio;
+            producto.Stock = nuevoStock;
+            return true;
+        }
+
+        public bool EliminarProducto(int id)
+        {
+            var producto = _productos.FirstOrDefault(p => p.Id == id);
+            if (producto == null) return false;
+
+            _productos.Remove(producto);
+            return true;
         }
     }
 }
